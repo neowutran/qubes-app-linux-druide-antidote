@@ -1,0 +1,21 @@
+pkgname=(qubes-$(./vars.sh name)-vm)
+pkgver=$(cat version)
+pkgrel=$(cat rel)
+arch=(x86_64)
+pkgdesc=$(./vars.sh description)
+url=$(git remote get-url origin)
+license=(GPL3)
+depends=()
+makedepends=(pandoc git)
+
+build() {
+ ln -s "$srcdir"/../ "$srcdir/src"
+}
+check(){
+ src/tests/all
+}
+package() {
+ cd src
+ make install-vm DESTDIR="$pkgdir/"
+}
+

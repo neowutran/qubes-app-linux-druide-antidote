@@ -1,0 +1,26 @@
+Name:		qubes-%(./vars.sh name)-dom0
+Version:	@VERSION@
+Release:	@REL@%{dist}
+Summary:	Qubes policy for %(./vars.sh name)
+License:	GPL
+URL:		%(git remote get-url origin)
+
+%description
+Qubes policy for %(./vars.sh name)
+
+%prep
+cp -Rf %{_sourcedir} qubes-%(./vars.sh name)-dom0-%(cat version)
+
+%install
+rm -rf $RPM_BUILD_ROOT
+cd qubes-%(./vars.sh name)-dom0-%(cat version)
+make install-dom0 DESTDIR=$RPM_BUILD_ROOT
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%config(noreplace) %attr(0664,root,qubes) /etc/qubes-rpc/policy/qubes.%(./vars.sh namecamel)
+
+%changelog
+@CHANGELOG@

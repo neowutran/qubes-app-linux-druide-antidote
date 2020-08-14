@@ -1,0 +1,11 @@
+#!/bin/bash
+FILE=${1?file required}
+TMPFILE=$(mktemp --tmpdir druide-antidote-XXXXXXXX)
+BACKUP=$(mktemp --tmpdir druide-antidote-backup-XXXXXXXX)
+cp "$FILE" "$BACKUP"
+echo "Backup file is: $BACKUP" >&2
+
+cat "$FILE"
+exec >&-
+cat > "$TMPFILE"
+[ -s "$TMPFILE" ] && mv "$TMPFILE" "$FILE"

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+file=${1?File required}
+exec /usr/bin/qrexec-client-vm 'antidote' qubes.DruideAntidote /usr/lib/qubes/druide-antidote-client "$file"

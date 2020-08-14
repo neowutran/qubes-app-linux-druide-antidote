@@ -1,0 +1,9 @@
+#!/bin/bash
+
+FILE=$(mktemp --tmpdir druide-antidote-XXXXXXXX)
+
+cat > "$FILE"
+/opt/Druide/Antidote10/Application/Bin/Antidote10 -f "$FILE" 2> /dev/null > /dev/null
+cat "$FILE"
+
+rm -f "$FILE"

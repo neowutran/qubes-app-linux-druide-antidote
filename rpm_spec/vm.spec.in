@@ -1,0 +1,35 @@
+Name: qubes-%(./vars.sh name)-vm
+Version: @VERSION@
+Release: @REL@%{dist}
+Summary: %(./vars.sh summary)
+License: GPL
+URL: %(git remote get-url origin)
+
+BuildRequires: pandoc
+
+#Requires:
+
+%description
+%(./vars.sh description)
+
+%prep
+cp -Rf %{_sourcedir} qubes-%(./vars.sh name)-%(cat version)
+
+%install
+rm -rf $RPM_BUILD_ROOT
+cd qubes-%(./vars.sh name)-%(cat version)
+make install-vm DESTDIR=$RPM_BUILD_ROOT
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root,-)
+/etc/qubes-rpc/qubes.%(./vars.sh camelname)
+/usr/lib/qubes/%(./vars.sh name)-client
+/usr/lib/qubes/%(./vars.sh name)-server
+/usr/bin/qvm-%(./vars.sh name)
+%{_mandir}/man1/qvm-%(./vars.sh name).1*
+
+%changelog
+@CHANGELOG@
