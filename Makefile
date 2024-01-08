@@ -12,7 +12,7 @@ qvm-$(NAME).1.gz: qvm-$(NAME).1
 manpage: qvm-$(NAME).1.gz
 
 install-dom0:
-	install -D -m 0664 policy /etc/qubes-rpc/policy/qubes.${NAME_CAMEL}
+	install -D -m 0664 policy /etc/qubes/policy.d/80-${NAME_CAMEL}.policy
 
 install-vm: install-vm-client install-vm-server
 
