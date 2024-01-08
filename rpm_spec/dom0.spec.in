@@ -20,7 +20,7 @@ make install-dom0 DESTDIR=$RPM_BUILD_ROOT
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%config(noreplace) %attr(0664,root,qubes) /etc/qubes-rpc/policy/qubes.%(./vars.sh namecamel)
+%config(noreplace) %attr(0664,root,qubes) /etc/qubes/policy.d/80-%(./vars.sh namecamel).policy
 
 %changelog
 @CHANGELOG@
