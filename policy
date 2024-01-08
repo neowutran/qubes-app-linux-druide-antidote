@@ -3,6 +3,6 @@
 
 ## Please use a single # to start your custom comments
 
-@anyvm @dispvm allow
-#@anyvm @dispvm allow,target=@dispvm:YOUR_TEMPLATE
-@anyvm @anyvm deny
+#qubes.DruideAntidote * @anyvm @dispvm allow
+#qubes.DruideAntidote * @anyvm @dispvm allow,target=@dispvm:YOUR_TEMPLATE
+qubes.DruideAntidote * @anyvm antidote allow
